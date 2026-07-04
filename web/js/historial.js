@@ -91,7 +91,6 @@ function renderStepProgress(estadoActual) {
         return `
             <div class="step ${cls}">
                 <div class="step-dot">${icon}</div>
-                <div class="step-line"></div>
                 <div class="step-label">${paso.label}</div>
             </div>
         `;

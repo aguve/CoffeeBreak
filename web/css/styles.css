@@ -781,18 +781,6 @@ body {
     box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.2);
 }
 
-.step .step-line {
-    position: absolute;
-    top: 12px;
-    left: calc(50% + 12px);
-    right: calc(-50% + 12px);
-    height: 2px;
-    background: var(--avena-oscuro);
-}
-
-.step.completed .step-line { background: var(--exito); }
-.step:last-child .step-line { display: none; }
-
 .step .step-label {
     font-size: 0.6rem;
     color: var(--texto-claro);
@@ -1306,12 +1294,6 @@ body {
         height: 20px;
         font-size: 0.5rem;
     }
-    .step .step-line {
-        top: 10px;
-        left: calc(50% + 10px);
-        right: calc(-50% + 10px);
-    }
-
     /* Historial - order card actions */
     .order-card .order-actions {
         flex-direction: column;
