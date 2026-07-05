@@ -136,16 +136,18 @@
                 container.innerHTML = '';
                 destacados.forEach(producto => {
                     const iconos = {1:'bi-cup-hot-fill', 2:'bi-droplet-fill', 3:'bi-basket-fill', 4:'bi-egg-fried'};
-                    const icono = iconos[producto.idCategoria] || 'bi-box-seam-fill';
                     const div = document.createElement('div');
                     div.className = 'prod-card';
+                    const imgHtml = producto.imagen
+                        ? `<img src="${producto.imagen}" alt="${producto.nombreProducto}">`
+                        : `<i class="bi ${iconos[producto.idCategoria] || 'bi-box-seam-fill'}"></i>`;
                     div.innerHTML = `
-                        <div class="prod-img"><i class="bi ${icono}"></i></div>
+                        <div class="prod-img">${imgHtml}</div>
                         <div class="prod-body">
                             <div class="prod-name">${producto.nombreProducto}</div>
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem;">
                                 <span class="prod-price">${producto.precio.toFixed(2)} €</span>
-                                <button class="prod-add" onclick="Carrito.agregar({idProducto: ${producto.idProducto}, nombreProducto: '${producto.nombreProducto.replace(/'/g, "\\'")}', precio: ${producto.precio}}, 1)">
+                                <button class="prod-add" onclick="Carrito.agregar({idProducto: ${producto.idProducto}, nombreProducto: '${producto.nombreProducto.replace(/'/g, "\\'")}', precio: ${producto.precio}, imagen: '${(producto.imagen || '').replace(/'/g, "\\'")}'}, 1)">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>

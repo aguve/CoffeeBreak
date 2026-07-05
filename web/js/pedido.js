@@ -27,11 +27,13 @@ function renderizarResumenCarrito() {
 
     items.forEach(item => {
         const iconos = {1:'bi-cup-hot-fill', 2:'bi-droplet-fill', 3:'bi-basket-fill', 4:'bi-egg-fried'};
-        const icono = iconos[item.idCategoria] || item.imagen || 'bi-box-seam-fill';
+        const imgHtml = item.imagen
+            ? `<img src="${item.imagen}" alt="${item.nombre}" style="width:100%;height:100%;object-fit:cover;">`
+            : `<i class="bi ${iconos[item.idCategoria] || 'bi-box-seam-fill'}"></i>`;
         const div = document.createElement('div');
         div.className = 'cart-item-card';
         div.innerHTML = `
-            <div class="item-icon"><i class="bi ${icono}"></i></div>
+            <div class="item-icon">${imgHtml}</div>
             <div class="item-info">
                 <div class="item-name">${item.nombre}</div>
                 <div class="item-price">${item.precio.toFixed(2)} € / ud.</div>

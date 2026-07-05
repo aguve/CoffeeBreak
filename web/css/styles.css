@@ -292,6 +292,13 @@ body {
     font-size: 2.5rem;
     color: var(--caramelo);
     position: relative;
+    overflow: hidden;
+}
+
+.prod-card .prod-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .prod-card .prod-img .badge-oferta {
@@ -477,6 +484,13 @@ body {
     font-size: 1.3rem;
     color: var(--caramelo);
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.cart-item-card .item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .cart-item-card .item-info { flex: 1; min-width: 0; }

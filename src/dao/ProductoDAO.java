@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ProductoDAO {
 
-    private static final String INSERT = "INSERT INTO PRODUCTO (nombre_producto, descripcion, precio, disponible, id_categoria) VALUES (?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE PRODUCTO SET nombre_producto=?, descripcion=?, precio=?, disponible=?, id_categoria=? WHERE id_producto=?";
+    private static final String INSERT = "INSERT INTO PRODUCTO (nombre_producto, descripcion, imagen, precio, disponible, id_categoria) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE PRODUCTO SET nombre_producto=?, descripcion=?, imagen=?, precio=?, disponible=?, id_categoria=? WHERE id_producto=?";
     private static final String DELETE = "DELETE FROM PRODUCTO WHERE id_producto=?";
     private static final String SELECT_ALL = "SELECT p.*, c.nombre_categoria FROM PRODUCTO p JOIN CATEGORIA c ON p.id_categoria = c.id_categoria";
     private static final String SELECT_BY_ID = "SELECT p.*, c.nombre_categoria FROM PRODUCTO p JOIN CATEGORIA c ON p.id_categoria = c.id_categoria WHERE p.id_producto=?";
@@ -24,9 +24,10 @@ public class ProductoDAO {
         try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, producto.getNombreProducto());
             ps.setString(2, producto.getDescripcion());
-            ps.setDouble(3, producto.getPrecio());
-            ps.setBoolean(4, producto.isDisponible());
-            ps.setInt(5, producto.getIdCategoria());
+            ps.setString(3, producto.getImagen());
+            ps.setDouble(4, producto.getPrecio());
+            ps.setBoolean(5, producto.isDisponible());
+            ps.setInt(6, producto.getIdCategoria());
             ps.executeUpdate();
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -40,10 +41,11 @@ public class ProductoDAO {
         try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(UPDATE)) {
             ps.setString(1, producto.getNombreProducto());
             ps.setString(2, producto.getDescripcion());
-            ps.setDouble(3, producto.getPrecio());
-            ps.setBoolean(4, producto.isDisponible());
-            ps.setInt(5, producto.getIdCategoria());
-            ps.setInt(6, producto.getIdProducto());
+            ps.setString(3, producto.getImagen());
+            ps.setDouble(4, producto.getPrecio());
+            ps.setBoolean(5, producto.isDisponible());
+            ps.setInt(6, producto.getIdCategoria());
+            ps.setInt(7, producto.getIdProducto());
             ps.executeUpdate();
         }
     }
@@ -118,6 +120,7 @@ public class ProductoDAO {
         p.setIdProducto(rs.getInt("id_producto"));
         p.setNombreProducto(rs.getString("nombre_producto"));
         p.setDescripcion(rs.getString("descripcion"));
+        p.setImagen(rs.getString("imagen"));
         p.setPrecio(rs.getDouble("precio"));
         p.setDisponible(rs.getBoolean("disponible"));
         p.setIdCategoria(rs.getInt("id_categoria"));
