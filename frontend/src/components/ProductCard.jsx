@@ -20,8 +20,8 @@ export default function ProductCard({ producto, index = 0 }) {
 
   const handleAdd = () => {
     addItem({
-      id: producto.id,
-      nombre: producto.nombre_producto,
+      id: producto.idProducto,
+      nombre: producto.nombreProducto,
       precio: producto.precio,
       imagen: producto.imagen,
     });
@@ -50,7 +50,7 @@ export default function ProductCard({ producto, index = 0 }) {
         <img
           className={`product-img ${imageLoaded ? 'loaded' : ''}`}
           src={producto.imagen}
-          alt={producto.nombre_producto}
+          alt={producto.nombreProducto}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
         />
@@ -58,8 +58,8 @@ export default function ProductCard({ producto, index = 0 }) {
       </div>
 
       <div className="product-body">
-        <span className="product-category-badge">{producto.categoria?.nombre || 'Sin categoria'}</span>
-        <h3 className="product-name">{producto.nombre_producto}</h3>
+        <span className="product-category-badge">{producto.nombreCategoria || 'Sin categoria'}</span>
+        <h3 className="product-name">{producto.nombreProducto}</h3>
         <p className="product-desc">{producto.descripcion}</p>
 
         <div className="product-footer">

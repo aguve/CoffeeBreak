@@ -42,7 +42,7 @@ export default function Menu() {
     activeCategory === 'all'
       ? productos || []
       : (productos || []).filter(
-          (p) => String(p.id_categoria) === activeCategory
+          (p) => String(p.idCategoria) === activeCategory
         );
 
   return (
