@@ -1294,6 +1294,226 @@ body {
     font-size: 0.85rem;
 }
 
+/* ======= EMPLEADOS PAGE ======= */
+.empleados-page { padding: 1rem; padding-top: calc(56px + 0.5rem); }
+
+.empleados-page .page-title {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--espresso);
+    margin-bottom: 0.25rem;
+}
+
+.empleados-page .page-sub {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    margin-bottom: 0;
+}
+
+.empleados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.empleados-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.emp-stat-card {
+    background: var(--avena);
+    border-radius: var(--radio);
+    padding: 0.85rem 0.5rem;
+    text-align: center;
+}
+
+.emp-stat-card .emp-stat-num {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--espresso);
+}
+
+.emp-stat-card .emp-stat-label {
+    font-size: 0.65rem;
+    color: var(--texto-secundario);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.empleados-filters {
+    margin-bottom: 0.5rem;
+}
+
+.empleados-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-bottom: 2rem;
+}
+
+.emp-card {
+    background: var(--blanco);
+    border: 1px solid var(--avena-oscuro);
+    border-radius: var(--radio);
+    padding: 1rem 1.1rem;
+}
+
+.emp-card .emp-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.emp-card .emp-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--caramelo);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.emp-card .emp-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.emp-card .emp-info .emp-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--espresso);
+}
+
+.emp-card .emp-info .emp-email {
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.emp-card .emp-status {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radio-pill);
+    flex-shrink: 0;
+}
+
+.emp-card .emp-activo { background: var(--exito-fondo); color: var(--exito); }
+.emp-card .emp-inactivo { background: var(--avena); color: var(--texto-secundario); }
+
+.emp-card .emp-card-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.emp-card .emp-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+}
+
+.emp-card .emp-detail i {
+    color: var(--caramelo);
+    font-size: 0.85rem;
+}
+
+.emp-card .emp-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--avena-oscuro);
+}
+
+/* ======= ROLE BADGES ======= */
+.emp-header-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    flex-shrink: 0;
+}
+
+.emp-rol-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radio-pill);
+    display: inline-flex;
+    align-items: center;
+}
+
+.emp-rol-admin {
+    background: #EDE7F6;
+    color: #5E35B1;
+}
+
+.emp-rol-empleado {
+    background: #E3F2FD;
+    color: #1565C0;
+}
+
+.emp-avatar-admin {
+    background: #5E35B1;
+}
+
+/* ======= KITCHEN STAFF ======= */
+.ko-staff-card {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--avena-oscuro);
+}
+
+.ko-staff-card:last-child {
+    border-bottom: none;
+}
+
+.ko-staff-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--caramelo);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.ko-staff-info {
+    min-width: 0;
+}
+
+.ko-staff-name {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--espresso);
+}
+
+.ko-staff-detail {
+    font-size: 0.7rem;
+    color: var(--texto-secundario);
+}
+
 /* ======= RESPONSIVE: MOBILE (<576px) ======= */
 @media (max-width: 575.98px) {
     /* Historial - steps */
@@ -1445,6 +1665,39 @@ body {
     .modal-body {
         padding: 1rem !important;
     }
+
+    /* Empleados page */
+    .empleados-page {
+        padding: 0.75rem;
+    }
+    .empleados-header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .empleados-header .btn-primary-custom {
+        width: 100%;
+    }
+    .empleados-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+    .emp-stat-card .emp-stat-num {
+        font-size: 1.1rem;
+    }
+    .empleados-list {
+        gap: 0.5rem;
+    }
+    .emp-card .emp-card-body {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+    .emp-card .emp-card-actions {
+        flex-direction: column;
+    }
+    .emp-card .emp-card-actions .btn-outline-custom {
+        flex: none;
+        width: 100%;
+    }
 }
 
 /* ======= RESPONSIVE: TABLET (576px - 767px) ======= */
@@ -1515,4 +1768,357 @@ body {
     .kitchen-orders {
         grid-template-columns: 1fr;
     }
+}
+
+/* ======= AUTH TABS ======= */
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    margin: 0 1.5rem;
+    background: var(--avena);
+    border-radius: var(--radio);
+    overflow: hidden;
+    border: 1.5px solid var(--avena-oscuro);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.auth-tab.active {
+    background: var(--caramelo);
+    color: var(--blanco);
+}
+
+.auth-tab:hover:not(.active) {
+    background: var(--avena-oscuro);
+}
+
+/* ======= McDONALD'S KITCHEN DISPLAY ======= */
+.kitchen-page {
+    background: var(--espresso);
+    min-height: 100vh;
+}
+
+.kitchen-left {
+    padding: 0;
+    overflow-y: auto;
+    background: var(--espresso);
+}
+
+.kitchen-left .kitchen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--espresso-claro);
+    border-bottom: 2px solid var(--caramelo);
+    margin: 0;
+}
+
+.kitchen-left .kitchen-header h1 {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.kitchen-left .kitchen-header .kpi-badge {
+    background: var(--caramelo);
+    color: var(--blanco);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radio-pill);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kitchen-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+.kitchen-column {
+    padding: 1rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.kitchen-column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.kitchen-column-header.col-pendiente {
+    background: rgba(255, 152, 0, 0.15);
+    color: #FFB74D;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.kitchen-column-header.col-preparacion {
+    background: rgba(33, 150, 243, 0.15);
+    color: #64B5F6;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.kitchen-column-header .col-count {
+    background: rgba(255,255,255,0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+}
+
+.kitchen-board .mcd-order {
+    background: var(--espresso-claro);
+    border-radius: 8px;
+    padding: 0.85rem;
+    margin-bottom: 0.6rem;
+    border-left: 4px solid;
+    transition: var(--transicion);
+    position: relative;
+}
+
+.kitchen-board .mcd-order.orden-nueva {
+    animation: ordenPulse 2s ease-in-out infinite;
+}
+
+@keyframes ordenPulse {
+    0%, 100% { border-left-color: var(--caramelo); }
+    50% { border-left-color: #FFB74D; }
+}
+
+.kitchen-board .mcd-order.pendiente { border-left-color: #FF9800; }
+.kitchen-board .mcd-order.preparacion { border-left-color: #2196F3; }
+.kitchen-board .mcd-order.listo { border-left-color: var(--exito); }
+
+.mcd-order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+.mcd-order-id {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--blanco);
+}
+
+.mcd-order-timer {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.mcd-order-timer.timer-ok { background: rgba(46, 125, 50, 0.2); color: #81C784; }
+.mcd-order-timer.timer-warning { background: rgba(255, 152, 0, 0.2); color: #FFB74D; }
+.mcd-order-timer.timer-critical { background: rgba(198, 40, 40, 0.2); color: #EF5350; }
+
+.mcd-order-customer {
+    font-size: 0.75rem;
+    color: var(--texto-claro);
+    margin-bottom: 0.5rem;
+}
+
+.mcd-order-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.6rem 0;
+}
+
+.mcd-order-items li {
+    font-size: 0.8rem;
+    color: var(--blanco);
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.mcd-order-items li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--caramelo);
+    flex-shrink: 0;
+}
+
+.mcd-order-items li .item-qty {
+    font-weight: 700;
+    color: var(--caramelo);
+    min-width: 20px;
+}
+
+.mcd-order-action {
+    width: 100%;
+    padding: 0.55rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.mcd-order-action.btn-iniciar {
+    background: var(--caramelo);
+    color: var(--blanco);
+}
+
+.mcd-order-action.btn-iniciar:hover {
+    background: var(--caramelo-hover);
+    transform: scale(1.02);
+}
+
+.mcd-order-action.btn-listo {
+    background: var(--exito);
+    color: var(--blanco);
+}
+
+.mcd-order-action.btn-listo:hover {
+    background: #1B5E20;
+    transform: scale(1.02);
+}
+
+.kitchen-right {
+    background: var(--espresso-claro);
+    border-left: 2px solid rgba(255,255,255,0.08);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.kitchen-right .kr-section {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.kitchen-right .kr-section h4 {
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--caramelo);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ko-staff-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+}
+
+.ko-staff-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--caramelo);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.ko-staff-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ko-staff-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+.ko-staff-detail {
+    font-size: 0.7rem;
+    color: var(--texto-claro);
+}
+
+.kr-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.kr-summary .kr-stat {
+    text-align: center;
+    padding: 0.6rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.kr-summary .kr-stat .kr-num {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--caramelo);
+}
+
+.kr-summary .kr-stat .kr-label {
+    font-size: 0.65rem;
+    color: var(--texto-claro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kitchen-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--texto-claro);
+}
+
+.kitchen-empty i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.kitchen-empty p {
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

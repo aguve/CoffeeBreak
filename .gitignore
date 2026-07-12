@@ -1,13 +1,25 @@
-build/
-dist/
+# Maven
 target/
 *.war
 *.class
-nbproject/private/
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.factorypath
+.vscode/
+nbproject/
+build/
+dist/
+
+# OS
 .DS_Store
 
 # Credenciales y configuracion sensible
-src/conexion/ConexionBD.java
+src/main/java/conexion/ConexionBD.java
 setenv.sh
 *.env
 .env

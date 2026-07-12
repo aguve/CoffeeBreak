@@ -3,6 +3,7 @@ let sesionActual = { autenticado: false };
 document.addEventListener('DOMContentLoaded', async function() {
     await verificarSesion();
     actualizarNavBar();
+    aplicarPermisosRol();
 });
 
 async function verificarSesion() {
@@ -40,6 +41,44 @@ function actualizarNavBar() {
         userEls.forEach(el => el.style.display = 'none');
         dnavGuestEls.forEach(el => el.style.display = 'flex');
         dnavUserEls.forEach(el => el.style.display = 'none');
+    }
+}
+
+function aplicarPermisosRol() {
+    const esEmpleado = sesionActual.autenticado && sesionActual.tipo === 'empleado';
+    const esAdmin = esEmpleado && sesionActual.rol === 'administrador';
+    const esCliente = sesionActual.autenticado && sesionActual.tipo === 'cliente';
+    const noAutenticado = !sesionActual.autenticado;
+
+    document.querySelectorAll('.nav-rol-empleado').forEach(el => {
+        el.style.display = esEmpleado ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.nav-rol-admin').forEach(el => {
+        el.style.display = esAdmin ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.nav-rol-cliente').forEach(el => {
+        el.style.display = esCliente ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.nav-rol-auth').forEach(el => {
+        el.style.display = sesionActual.autenticado ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.nav-rol-guest').forEach(el => {
+        el.style.display = noAutenticado ? 'flex' : 'none';
+    });
+
+    document.querySelectorAll('.dnav-rol-empleado').forEach(el => {
+        el.style.display = esEmpleado ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.dnav-rol-admin').forEach(el => {
+        el.style.display = esAdmin ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.dnav-rol-cliente').forEach(el => {
+        el.style.display = esCliente ? 'flex' : 'none';
+    });
+
+    const currentPage = window.location.pathname.split('/').pop();
+    if (esEmpleado && !esAdmin && currentPage === 'empleado.html') {
+        window.location.href = 'cocina.html';
     }
 }
 

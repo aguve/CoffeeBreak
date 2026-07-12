@@ -48,6 +48,10 @@ public class PedidoService {
         return pedidoDAO.listarPorCliente(idCliente);
     }
 
+    public List<Pedido> listarTodos() throws SQLException {
+        return pedidoDAO.listarTodos();
+    }
+
     public Pedido actualizarEstado(int idPedido, int idEstado) throws SQLException {
         pedidoDAO.actualizarEstado(idPedido, idEstado);
         return pedidoDAO.buscarPorId(idPedido);
