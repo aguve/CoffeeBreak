@@ -1,0 +1,145 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 0.75rem 0;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.brand-icon {
+  font-size: 1.5rem;
+}
+
+.brand-accent {
+  color: var(--color-caramelo);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--color-caramelo);
+  border-radius: 3px;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  color: var(--color-caramelo);
+}
+
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.cart-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--color-caramelo);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--color-caramelo);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+}

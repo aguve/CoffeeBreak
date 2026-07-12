@@ -1,0 +1,49 @@
+.menu-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: rgba(255, 122, 0, 0.15);
+  border-color: rgba(255, 122, 0, 0.3);
+  color: var(--color-caramelo);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--text-muted);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
