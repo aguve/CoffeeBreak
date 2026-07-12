@@ -93,15 +93,15 @@ INSERT INTO PRODUCTO (nombre_producto, descripcion, imagen, precio, disponible, 
 ('Café Solo', 'Café espresso tradicional', 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=300&h=300&fit=crop', 1.50, TRUE, 1),
 ('Café con Leche', 'Café con leche espumosa', 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=300&h=300&fit=crop', 1.80, TRUE, 1),
 ('Cappuccino', 'Café con leche y espuma de leche', 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=300&h=300&fit=crop', 2.20, TRUE, 1),
-('Latte Macchiato', 'Leche con café manchado', 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=300&h=300&fit=crop', 2.50, TRUE, 1),
+('Latte Macchiato', 'Leche con café manchado', 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=300&h=300&fit=crop', 2.50, TRUE, 1),
 ('Agua Mineral', 'Agua mineral natural 500ml', 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=300&h=300&fit=crop', 1.00, TRUE, 2),
 ('Zumo de Naranja', 'Zumo de naranja natural exprimido', 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300&h=300&fit=crop', 2.00, TRUE, 2),
-('Refresco Cola', 'Refresco de cola 330ml', 'https://images.unsplash.com/photo-1596803244618-8d5cca6c68ba?w=300&h=300&fit=crop', 1.50, TRUE, 2),
-('Bocadillo Jamón', 'Bocadillo de jamón serrano con tomate', 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300&h=300&fit=crop', 3.50, TRUE, 3),
-('Bocadillo Queso', 'Bocadillo de queso curado', 'https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=300&h=300&fit=crop', 3.00, TRUE, 3),
-('Croissant', 'Croissant de mantequilla', 'https://images.unsplash.com/photo-1555507036-ab1f4038028a?w=300&h=300&fit=crop', 1.80, TRUE, 4),
-('Napolitana', 'Napolitana de chocolate', 'https://images.unsplash.com/photo-1609505848912-b78c2c14e1e4?w=300&h=300&fit=crop', 2.00, TRUE, 4),
-('Ensaimada', 'Ensaimada tradicional', 'https://images.unsplash.com/photo-1609501078723-6bd52f6e48f9?w=300&h=300&fit=crop', 1.50, TRUE, 4);
+('Refresco Cola', 'Refresco de cola 330ml', 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=300&h=300&fit=crop', 1.50, TRUE, 2),
+('Bocadillo Jamón', 'Bocadillo de jamón serrano con tomate', 'https://images.unsplash.com/photo-1567613913497-8f023fc3d343?w=300&h=300&fit=crop', 3.50, TRUE, 3),
+('Bocadillo de queso semicurado', 'Bocadillo de queso semicurado Manchego', 'https://selectosibericos.com/wp-content/uploads/2015/12/manchego-semi.jpg?w=300&h=300&fit=crop', 3.00, TRUE, 3),
+('Croissant', 'Croissant de mantequilla', 'https://images.unsplash.com/photo-1530610476181-d83430b64dcd?w=300&h=300&fit=crop', 1.80, TRUE, 4),
+('Napolitana de choco', 'Napolitana de chocolate', 'https://pasteleriacampana.com/wp-content/uploads/2022/09/napolitana_3.jpg?w=300&h=300&fit=crop', 2.00, TRUE, 4),
+('Ensaimada', 'Ensaimada tradicional', 'https://blogditifet.com/wp-content/uploads/2016/03/BlogDitiFet-Ensaimadas.jpg?w=300&h=300&fit=crop', 1.50, TRUE, 4);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

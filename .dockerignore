@@ -1,0 +1,9 @@
+.git
+target
+nbproject
+preview
+*.war
+*.class
+.DS_Store
+AGENTS.md
+token.txt
