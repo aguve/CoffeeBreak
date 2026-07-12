@@ -1,6 +1,7 @@
 package controller;
 
 import beans.Cliente;
+import beans.Empleado;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -11,24 +12,50 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import service.ClienteService;
+import service.EmpleadoService;
 import utils.JsonUtils;
 import utils.Validaciones;
 
-@WebServlet(name = "AuthController", urlPatterns = {"/api/login", "/api/registro", "/api/logout", "/api/sesion"})
+@WebServlet(name = "AuthController", urlPatterns = {"/api/login", "/api/login-empleado", "/api/registro", "/api/logout", "/api/sesion"})
 public class AuthController extends HttpServlet {
 
     private final ClienteService clienteService = new ClienteService();
+    private final EmpleadoService empleadoService = new EmpleadoService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         if (request.getRequestURI().endsWith("/api/sesion")) {
             HttpSession session = request.getSession(false);
-            if (session != null && session.getAttribute("clienteId") != null) {
-                int idCliente = (int) session.getAttribute("clienteId");
-                String nombre = (String) session.getAttribute("clienteNombre");
-                String email = (String) session.getAttribute("clienteEmail");
-                JsonUtils.enviarJson(response, Map.of("autenticado", true, "idCliente", idCliente, "nombre", nombre, "email", email));
+            if (session != null) {
+                if (session.getAttribute("clienteId") != null) {
+                    int idCliente = (int) session.getAttribute("clienteId");
+                    String nombre = (String) session.getAttribute("clienteNombre");
+                    String email = (String) session.getAttribute("clienteEmail");
+                    JsonUtils.enviarJson(response, Map.of(
+                        "autenticado", true,
+                        "tipo", "cliente",
+                        "idCliente", idCliente,
+                        "nombre", nombre,
+                        "email", email
+                    ));
+                } else if (session.getAttribute("empleadoId") != null) {
+                    int idEmpleado = (int) session.getAttribute("empleadoId");
+                    String nombre = (String) session.getAttribute("empleadoNombre");
+                    String email = (String) session.getAttribute("empleadoEmail");
+                    String rol = (String) session.getAttribute("empleadoRol");
+                    JsonUtils.enviarJson(response, Map.of(
+                        "autenticado", true,
+                        "tipo", "empleado",
+                        "idEmpleado", idEmpleado,
+                        "nombre", nombre,
+                        "email", email,
+                        "rol", rol
+                    ));
+                } else {
+                    JsonUtils.enviarJson(response, Map.of("autenticado", false));
+                }
             } else {
                 JsonUtils.enviarJson(response, Map.of("autenticado", false));
             }
@@ -43,6 +70,8 @@ public class AuthController extends HttpServlet {
         try {
             if (uri.endsWith("/api/login")) {
                 handleLogin(request, response);
+            } else if (uri.endsWith("/api/login-empleado")) {
+                handleLoginEmpleado(request, response);
             } else if (uri.endsWith("/api/registro")) {
                 handleRegistro(request, response);
             } else if (uri.endsWith("/api/logout")) {
@@ -71,9 +100,39 @@ public class AuthController extends HttpServlet {
             session.setAttribute("clienteId", cliente.getIdCliente());
             session.setAttribute("clienteNombre", cliente.getNombre());
             session.setAttribute("clienteEmail", cliente.getEmail());
-            JsonUtils.enviarJson(response, Map.of("mensaje", "Inicio de sesión exitoso", "cliente", Map.of("id", cliente.getIdCliente(), "nombre", cliente.getNombre(), "email", cliente.getEmail())));
+            JsonUtils.enviarJson(response, Map.of("mensaje", "Inicio de sesión exitoso", "tipo", "cliente", "cliente", Map.of("id", cliente.getIdCliente(), "nombre", cliente.getNombre(), "email", cliente.getEmail())));
         } else {
             JsonUtils.enviarError(response, 401, "Email o contraseña incorrectos");
+        }
+    }
+
+    private void handleLoginEmpleado(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        Map<String, Object> datos = JsonUtils.parsearMapa(request);
+        String email = (String) datos.get("email");
+        String contrasena = (String) datos.get("contrasena");
+        if (Validaciones.esCampoVacio(email) || Validaciones.esCampoVacio(contrasena)) {
+            JsonUtils.enviarError(response, 400, "Todos los campos son obligatorios");
+            return;
+        }
+        Empleado empleado = empleadoService.login(email, contrasena);
+        if (empleado != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("empleadoId", empleado.getIdEmpleado());
+            session.setAttribute("empleadoNombre", empleado.getNombre());
+            session.setAttribute("empleadoEmail", empleado.getEmail());
+            session.setAttribute("empleadoRol", empleado.getRol());
+            JsonUtils.enviarJson(response, Map.of(
+                "mensaje", "Inicio de sesión exitoso",
+                "tipo", "empleado",
+                "empleado", Map.of(
+                    "id", empleado.getIdEmpleado(),
+                    "nombre", empleado.getNombre(),
+                    "email", empleado.getEmail(),
+                    "rol", empleado.getRol()
+                )
+            ));
+        } else {
+            JsonUtils.enviarError(response, 401, "Email o contraseña incorrectos, o empleado inactivo");
         }
     }
 

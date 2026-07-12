@@ -33,13 +33,20 @@ public class PedidoController extends HttpServlet {
         try {
             if (request.getRequestURI().endsWith("/api/pedidos")) {
                 HttpSession session = request.getSession(false);
-                if (session == null || session.getAttribute("clienteId") == null) {
+                if (session == null) {
                     JsonUtils.enviarError(response, 401, "No autenticado");
                     return;
                 }
-                int idCliente = (int) session.getAttribute("clienteId");
-                List<Pedido> pedidos = pedidoService.listarPorCliente(idCliente);
-                JsonUtils.enviarJson(response, pedidos);
+                if (session.getAttribute("empleadoId") != null) {
+                    List<Pedido> pedidos = pedidoService.listarTodos();
+                    JsonUtils.enviarJson(response, pedidos);
+                } else if (session.getAttribute("clienteId") != null) {
+                    int idCliente = (int) session.getAttribute("clienteId");
+                    List<Pedido> pedidos = pedidoService.listarPorCliente(idCliente);
+                    JsonUtils.enviarJson(response, pedidos);
+                } else {
+                    JsonUtils.enviarError(response, 401, "No autenticado");
+                }
             } else if (pathInfo != null && pathInfo.length() > 1) {
                 int idPedido = Integer.parseInt(pathInfo.substring(1));
                 Pedido pedido = pedidoService.buscarPorId(idPedido);
@@ -110,6 +117,17 @@ public class PedidoController extends HttpServlet {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null || pathInfo.length() <= 1) {
             JsonUtils.enviarError(response, 400, "ID de pedido requerido");
+            return;
+        }
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            JsonUtils.enviarError(response, 401, "No autenticado");
+            return;
+        }
+        boolean esEmpleado = session.getAttribute("empleadoId") != null;
+        boolean esCliente = session.getAttribute("clienteId") != null;
+        if (!esEmpleado && !esCliente) {
+            JsonUtils.enviarError(response, 401, "No autenticado");
             return;
         }
         try {

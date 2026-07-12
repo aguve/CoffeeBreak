@@ -65,6 +65,19 @@ CONSTRAINT fk_producto_categoria
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE EMPLEADO (
+id_empleado INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(100) NOT NULL,
+apellido VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+contrasena VARCHAR(255) DEFAULT NULL,
+telefono VARCHAR(20),
+puesto VARCHAR(100) NOT NULL,
+turno VARCHAR(50) NOT NULL,
+rol ENUM('administrador', 'empleado') NOT NULL DEFAULT 'empleado',
+activo BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE DETALLE_PEDIDO (
 id_detalle INT AUTO_INCREMENT PRIMARY KEY,
 id_pedido INT NOT NULL,
@@ -102,6 +115,13 @@ INSERT INTO PRODUCTO (nombre_producto, descripcion, imagen, precio, disponible, 
 ('Croissant', 'Croissant de mantequilla', 'https://images.unsplash.com/photo-1555507036-ab1f4038028a?w=300&h=300&fit=crop', 1.80, TRUE, 4),
 ('Napolitana', 'Napolitana de chocolate', 'https://images.unsplash.com/photo-1609505848912-b78c2c14e1e4?w=300&h=300&fit=crop', 2.00, TRUE, 4),
 ('Ensaimada', 'Ensaimada tradicional', 'https://images.unsplash.com/photo-1609501078723-6bd52f6e48f9?w=300&h=300&fit=crop', 1.50, TRUE, 4);
+
+INSERT INTO EMPLEADO (nombre, apellido, email, contrasena, telefono, puesto, turno, rol, activo) VALUES
+('María', 'López', 'maria.lopez@coffeebreak.es', 'pgOrKenbsLHSlKFMkToSur2kGM9nBvR48G9uyuchjOo5WyxwRDL83wj0l/U1XDkd', '612345678', 'Barista', 'Mañana', 'administrador', TRUE),
+('Carlos', 'García', 'carlos.garcia@coffeebreak.es', 'pgOrKenbsLHSlKFMkToSur2kGM9nBvR48G9uyuchjOo5WyxwRDL83wj0l/U1XDkd', '623456789', 'Cocinero', 'Mañana', 'empleado', TRUE),
+('Ana', 'Martínez', 'ana.martinez@coffeebreak.es', 'pgOrKenbsLHSlKFMkToSur2kGM9nBvR48G9uyuchjOo5WyxwRDL83wj0l/U1XDkd', '634567890', 'Camarera', 'Tarde', 'empleado', TRUE),
+('Pedro', 'Sánchez', 'pedro.sanchez@coffeebreak.es', 'pgOrKenbsLHSlKFMkToSur2kGM9nBvR48G9uyuchjOo5WyxwRDL83wj0l/U1XDkd', '645678901', 'Cocinero', 'Tarde', 'empleado', TRUE),
+('Laura', 'Fernández', 'laura.fernandez@coffeebreak.es', 'pgOrKenbsLHSlKFMkToSur2kGM9nBvR48G9uyuchjOo5WyxwRDL83wj0l/U1XDkd', '656789012', 'Barista', 'Noche', 'empleado', TRUE);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

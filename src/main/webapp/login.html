@@ -16,7 +16,16 @@
     <div class="auth-page">
         <div class="auth-header">
             <div class="auth-logo"><i class="bi bi-cup-hot-fill"></i>CoffeeBreak</div>
-            <div class="auth-sub">Inicia sesión para pedir</div>
+            <div class="auth-sub">Inicia sesión para continuar</div>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabCliente" onclick="cambiarTipoLogin('cliente')">
+                <i class="bi bi-person-fill"></i> Cliente
+            </button>
+            <button class="auth-tab" id="tabEmpleado" onclick="cambiarTipoLogin('empleado')">
+                <i class="bi bi-headset"></i> Empleado
+            </button>
         </div>
 
         <div class="auth-body">
@@ -29,11 +38,12 @@
                     <label for="contrasena">Contraseña</label>
                     <input type="password" id="contrasena" required minlength="8" placeholder="Mínimo 8 caracteres" autocomplete="current-password">
                 </div>
+                <input type="hidden" id="tipoLogin" value="cliente">
                 <button type="submit" class="btn-primary-custom">Iniciar Sesión</button>
             </form>
         </div>
 
-        <div class="auth-footer">
+        <div class="auth-footer" id="authFooter">
             ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
         </div>
     </div>
@@ -44,10 +54,18 @@
     <script src="js/carrito.js"></script>
     <script src="js/main.js"></script>
     <script>
+        function cambiarTipoLogin(tipo) {
+            document.getElementById('tipoLogin').value = tipo;
+            document.getElementById('tabCliente').classList.toggle('active', tipo === 'cliente');
+            document.getElementById('tabEmpleado').classList.toggle('active', tipo === 'empleado');
+            document.getElementById('authFooter').style.display = tipo === 'empleado' ? 'none' : 'block';
+        }
+
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const contrasena = document.getElementById('contrasena').value;
+            const tipo = document.getElementById('tipoLogin').value;
             if (!Validaciones.esEmailValido(email)) {
                 Toast.mostrar('Email no válido', 'danger');
                 return;
@@ -58,9 +76,21 @@
             }
             mostrarLoader();
             try {
-                await API.post(API.getBaseUrl() + '/api/login', { email, contrasena });
+                const endpoint = tipo === 'empleado' ? '/api/login-empleado' : '/api/login';
+                const data = await API.post(API.getBaseUrl() + endpoint, { email, contrasena });
                 Toast.mostrar('Inicio de sesión exitoso', 'success');
-                setTimeout(() => { window.location.href = 'index.html'; }, 800);
+                setTimeout(() => {
+                    if (tipo === 'empleado') {
+                        const rol = data.empleado.rol;
+                        if (rol === 'administrador') {
+                            window.location.href = 'empleado.html';
+                        } else {
+                            window.location.href = 'cocina.html';
+                        }
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 800);
             } catch (error) {
                 Toast.mostrar(error.message, 'danger');
             } finally {
