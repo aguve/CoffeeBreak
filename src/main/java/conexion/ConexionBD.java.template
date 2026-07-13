@@ -6,9 +6,12 @@ import java.sql.SQLException;
 
 public class ConexionBD {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/coffeebreak_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String URL = "jdbc:mariadb://localhost:3306/coffeebreak_db?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
+
+    // Si usas MySQL 8+ en lugar de MariaDB, cambia el URL a:
+    // private static final String URL = "jdbc:mysql://localhost:3306/coffeebreak_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
     private static Connection connection;
 
@@ -17,12 +20,7 @@ public class ConexionBD {
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (ClassNotFoundException e) {
-                throw new SQLException("MySQL Driver not found", e);
-            }
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
         }
         return connection;
     }
